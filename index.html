@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzina de Aniversário do [Nome]</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ffeb3b, #ff9800, #e91e63, #9c27b0);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+        @keyframes gradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            max-width: 800px;
+            margin: 0 auto;
+            backdrop-filter: blur(5px);
+            border: 3px dashed #e91e63;
+        }
+        h1 {
+            color: #e91e63;
+            font-size: 3em;
+            text-shadow: 3px 3px 0 #ffc107;
+            background: linear-gradient(to right, #e91e63, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #9c27b0;
+            margin-top: 0;
+        }
+        .buzina {
+            font-size: 5em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .buzina:hover {
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.8));
+        }
+        .foto {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #e91e63;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(233, 30, 99, 0.5);
+            transition: all 0.3s;
+        }
+        .foto:hover {
+            transform: rotate(5deg);
+            border-color: #ff9800;
+        }
+        .mensagens {
+            margin-top: 30px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #ff9800;
+        }
+        .btn-quiz {
+            background: linear-gradient(to right, #e91e63, #ff9800);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+            font-family: 'Comic Sans MS', cursive;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+            transition: all 0.3s;
+        }
+        .btn-quiz:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #ffeb3b, #ffc107);
+            margin: 5% auto;
+            padding: 25px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            border: 3px solid #e91e63;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #e91e63;
+            cursor: pointer;
+        }
+        .pergunta {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+        }
+        .opcoes {
+            margin-left: 20px;
+        }
+        .opcao {
+            margin: 5px 0;
+        }
+        #resultado {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e91e63;
+            margin-top: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            display: none;
+        }
+        #enviarQuiz {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        #enviarQuiz:hover {
+            background: #c2185b;
+            transform: scale(1.05);
+        }
+        .quiz-footer {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(233, 30, 99, 0.8);
+            color: white;
+            border-radius: 10px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .site-footer {
+            margin-top: 30px;
+            padding: 15px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 BUZINA DE ANIVERSÁRIO 🎉</h1>
+        <h2>Para o incrível [Nome do Seu Amigo]!</h2>
+        
+        <img src="foto_engracada_do_amigo.jpg" alt="[Nome] sendo descolado" class="foto">
+        
+        <div class="buzina" onclick="tocarBuzina()">📯</div>
+        <p>Clique na buzina para comemorar!</p>
+        
+        <button class="btn-quiz" onclick="abrirQuiz()">TESTE SEU CONHECIMENTO SOBRE [NOME]!</button>
+        
+        <div class="mensagens">
+            <h3>Motivos pelo qual [Nome] é especial:</h3>
+            <ul>
+                <li>É o único que sabe fazer aquele barulho engraçado com a axila</li>
+                <li>Sempre tem uma piada ruim na ponta da língua</li>
+                <li>Consegue comer um pacote inteiro de bolacha em 2 minutos</li>
+                <li>Inventou a dança do "pé torcido" que só ele sabe fazer</li>
+            </ul>
+            
+            <h3>Memórias engraçadas:</h3>
+            <p>Lembra quando [Nome] [insira situação engraçada]? A gente nunca vai esquecer!</p>
+        </div>
+        
+        <div class="site-footer">
+            <p>Feito com ❤️ pelos amigos que aguentam [Nome] no dia a dia</p>
+            <p>© 2023 - Todos os direitos (e vergonhas) reservados</p>
+        </div>
+        
+        <audio id="buzinaAudio" src="https://www.soundjay.com/human/sounds/party-horn-01.mp3"></audio>
+    </div>
+
+    <!-- Modal do Quiz -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharQuiz()">&times;</span>
+            <h2>Quiz: Quão bem você conhece o [Nome]?</h2>
+            
+            <form id="quizForm">
+                <div class="pergunta">
+                    <p>1. Qual é a comida favorita de [Nome]?</p>
+                    <div class="opcoes">
+                        <div class="opcao"><input type="radio" name="q1" value="a"> Pizza com abacaxi (o crime perfeito)</div>
+                        <div class="opcao"><input type="radio" name="q1" value="b"> Strogonoff da mãe dele</div>
+                        <div class="opcao"><input type="radio" name="q1" value="c"> Qualquer coisa que esteja no prato dos outros</div>
+                    </div>
+                </div>
+                
+                <div class="pergunta">
+                    <p>2. Qual foi a maior vergonha que [Nome] já passou?</p>
+                    <div class="opcoes">
+                        <div class="opcao"><input type="radio" name="q2" value="a"> Cantou no karaokê achando que estava sozinho, mas todo mundo viu</div>
+                        <div class="opcao"><input type="radio" name="q2" value="b"> Caiu no meio da rua e fingiu que estava fazendo flexão</div>
+                        <div class="opcao"><input type="radio" name="q2" value="c"> Chamou o professor de "mãe" sem querer</div>
+                    </div>
+                </div>
+                
+                <div class="pergunta">
+                    <p>3. Qual é o talento secreto de [Nome]?</p>
+                    <div class="opcoes">
+                        <div class="opcao"><input type="radio" name="q3" value="a"> Imitar personagens de desenho animado</div>
+                        <div class="opcao"><input type="radio" name="q3" value="b"> Fazer barulhos engraçados com o corpo</div>
+                        <div class="opcao"><input type="radio" name="q3" value="c"> Dormir em qualquer lugar, em qualquer posição</div>
+                    </div>
+                </div>
+                
+                <div class="pergunta">
+                    <p>4. Qual foi a fase mais estranha de [Nome]?</p>
+                    <div class="opcoes">
+                        <div class="opcao"><input type="radio" name="q4" value="a"> Quando só usava roupas coloridas demais</div>
+                        <div class="opcao"><input type="radio" name="q4" value="b"> A fase em que tentou fazer dreadlocks em casa</div>
+                        <div class="opcao"><input type="radio" name="q4" value="c"> Quando decidiu que ia virar vegetariano, mas durou 3 dias</div>
+                    </div>
+                </div>
+                
+                <div class="pergunta">
+                    <p>5. Qual é a mania mais irritante de [Nome]?</p>
+                    <div class="opcoes">
+                        <div class="opcao"><input type="radio" name="q5" value="a"> Cantarolar músicas sem saber a letra</div>
+                        <div class="opcao"><input type="radio" name="q5" value="b"> Pegar comida do seu prato sem pedir</div>
+                        <div class="opcao"><input type="radio" name="q5" value="c"> Contar spoilers de filmes e séries</div>
+                    </div>
+                </div>
+                
+                <div class="pergunta">
+                    <p>6. Qual dessas frases [Nome] já disse sério?</p>
+                    <div class="opcoes">
+                        <div class="opcao"><input type="radio" name="q6" value="a"> "A internet é uma coisa passageira"</div>
+                        <div class="opcao"><input type="radio" name="q6" value="b"> "Posso comer 20 pasteis, fácil"</div>
+                        <div class="opcao"><input type="radio" name="q6" value="c"> "Não, eu não to bêbado, o chão que tá inclinado"</div>
+                    </div>
+                </div>
+                
+                <div class="pergunta">
+                    <p>7. Se [Nome] fosse um animal, qual seria?</p>
+                    <div class="opcoes">
+                        <div class="opcao"><input type="radio" name="q7" value="a"> Um cachorro - sempre animado e com fome</div>
+                        <div class="opcao"><input type="radio" name="q7" value="b"> Um gato - dorme o dia todo e é dono da razão</div>
+                        <div class="opcao"><input type="radio" name="q7" value="c"> Um panda - desastrado mas todo mundo ama</div>
+                    </div>
+                </div>
+                
+                <div class="pergunta">
+                    <p>8. Qual seria o nome da autobiografia de [Nome]?</p>
+                    <div class="opcoes">
+                        <div class="opcao"><input type="radio" name="q8" value="a"> "Como Sobrevivi às Minhas Próprias Ideias"</div>
+                        <div class="opcao"><input type="radio" name="q8" value="b"> "101 Maneiras de Fazer Vergonha em Público"</div>
+                        <div class="opcao"><input type="radio" name="q8" value="c"> "Não Era Isso Que Eu Queria Dizer: A Vida de Um Sem Noção"</div>
+                    </div>
+                </div>
+                
+                <button type="button" id="enviarQuiz" onclick="verificarRespostas()">Enviar Respostas!</button>
+                
+                <div id="resultado"></div>
+                
+                <!-- Rodapé do Quiz -->
+                <div class="quiz-footer">
+                    <p>🎂 Feliz Aniversário, [Nome]! 🎂</p>
+                    <p>Esperamos que esse quiz tenha capturado pelo menos 37% da sua essência única!</p>
+                    <p>PS: Se você é o [Nome] e errou muitas questões, talvez deva se conhecer melhor!</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function tocarBuzina() {
+            const audio = document.getElementById('buzinaAudio');
+            audio.currentTime = 0;
+            audio.play();
+            
+            const buzina = document.querySelector('.buzina');
+            buzina.style.transform = 'scale(1.5) rotate(20deg)';
+            setTimeout(() => {
+                buzina.style.transform = 'scale(1)';
+            }, 200);
+            
+            if (window.confetti) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+        
+        // Funções do Quiz
+        function abrirQuiz() {
+            document.getElementById('quizModal').style.display = 'block';
+            tocarBuzina(); // Toca a buzina quando abre o quiz
+        }
+        
+        function fecharQuiz() {
+            document.getElementById('quizModal').style.display = 'none';
+            document.getElementById('resultado').style.display = 'none';
+            // Reseta o formulário
+            document.getElementById('quizForm').reset();
+        }
+        
+        function verificarRespostas() {
+            const respostasCorretas = ['c', 'b', 'a', 'b', 'c', 'b', 'a', 'c']; // Substitua pelas respostas corretas
+            let pontuacao = 0;
+            
+            // Verifica cada pergunta
+            for (let i = 1; i <= 8; i++) {
+                const selecionada = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selecionada && selecionada.value === respostasCorretas[i-1]) {
+                    pontuacao++;
+                }
+            }
+            
+            // Mostra o resultado
+            const resultado = document.getElementById('resultado');
+            resultado.style.display = 'block';
+            
+            let mensagem = '';
+            if (pontuacao === 8) {
+                mensagem = `PERFEITO! Você acertou ${pontuacao}/8! Você conhece o [Nome] melhor que ele mesmo!`;
+            } else if (pontuacao >= 5) {
+                mensagem = `MUITO BEM! Você acertou ${pontuacao}/8! Você e [Nome] são bons amigos!`;
+            } else if (pontuacao >= 3) {
+                mensagem = `RAZOÁVEL! Você acertou ${pontuacao}/8. Precisa passar mais tempo com [Nome]!`;
+            } else {
+                mensagem = `HMM... só ${pontuacao}/8? Você realmente conhece o [Nome]?`;
+            }
+            
+            resultado.innerHTML = mensagem;
+            
+            // Rola até o resultado
+            resultado.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Fecha o modal se clicar fora dele
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('quizModal')) {
+                fecharQuiz();
+            }
+        }
+    </script>
+    
+    <!-- Confetti.js -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
