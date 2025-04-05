@@ -3,387 +3,1500 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buzina de Aniversário do [Nome]</title>
+    <title>Festa do Buzina! 🎉</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --rosa-bi: #D60270;
+            --roxo-bi: #9B4F96;
+            --azul-bi: #0038A8;
+            --destaque: #FFD700;
+            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(45deg, #ffeb3b, #ff9800, #e91e63, #9c27b0);
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(-45deg, var(--rosa-bi), var(--roxo-bi), var(--azul-bi), #000);
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 20px;
+            color: white;
+            overflow-x: hidden;
             text-align: center;
-            padding: 20px;
-            color: #333;
+            min-height: 100vh;
         }
-        @keyframes gradient {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
+        
         .container {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.3);
-            max-width: 800px;
-            margin: 0 auto;
-            backdrop-filter: blur(5px);
-            border: 3px dashed #e91e63;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: var(--sombra),
+                        0 0 0 5px rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
         h1 {
-            color: #e91e63;
-            font-size: 3em;
-            text-shadow: 3px 3px 0 #ffc107;
-            background: linear-gradient(to right, #e91e63, #ff9800);
+            font-family: 'Bungee', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin: 0;
+            background: linear-gradient(45deg, var(--destaque), #FF8C00, var(--rosa-bi));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+            animation: pulse 2s infinite alternate;
+            position: relative;
+            display: inline-block;
+            line-height: 1.2;
             margin-bottom: 10px;
         }
+        
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--destaque), transparent);
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+        
         h2 {
-            color: #9c27b0;
+            color: var(--destaque);
+            font-size: clamp(1.5rem, 3vw, 2rem);
             margin-top: 0;
+            text-shadow: 2px 2px 0 var(--rosa-bi);
+            margin-bottom: 20px;
         }
-        .buzina {
-            font-size: 5em;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-block;
+        
+        .foto-container {
+            position: relative;
+            width: min(250px, 70vw);
+            height: min(250px, 70vw);
+            margin: 30px auto;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
         }
-        .buzina:hover {
-            transform: scale(1.2) rotate(10deg);
-            filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.8));
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(0); }
+            50% { transform: translateY(-20px) rotateY(10deg); }
         }
+        
         .foto {
-            width: 200px;
-            height: 200px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #e91e63;
-            margin: 20px auto;
-            box-shadow: 0 0 20px rgba(233, 30, 99, 0.5);
-            transition: all 0.3s;
+            border: 5px solid white;
+            box-shadow: 0 0 30px var(--rosa-bi),
+                        0 0 60px var(--roxo-bi),
+                        0 0 90px var(--azul-bi);
+            transition: all 0.5s;
+            transform: translateZ(20px);
         }
+        
         .foto:hover {
-            transform: rotate(5deg);
-            border-color: #ff9800;
+            transform: scale(1.1) rotate(5deg) translateZ(30px);
+            box-shadow: 0 0 50px var(--rosa-bi),
+                        0 0 100px var(--roxo-bi),
+                        0 0 150px var(--azul-bi);
         }
-        .mensagens {
-            margin-top: 30px;
-            text-align: left;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 5px solid #ff9800;
+        
+        .foto-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px dashed var(--destaque);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite reverse;
+            z-index: -1;
         }
+        
+        .buzina-btn {
+            font-size: clamp(3rem, 10vw, 5rem);
+            cursor: pointer;
+            margin: 20px 0;
+            display: inline-block;
+            transition: all 0.3s;
+            text-shadow: 0 0 10px var(--rosa-bi);
+            animation: bounce 2s infinite;
+            transform-origin: bottom;
+            background: none;
+            border: none;
+            color: inherit;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+        }
+        
+        .buzina-btn:hover {
+            transform: scale(1.3) rotate(15deg);
+            text-shadow: 0 0 20px var(--destaque);
+        }
+        
         .btn-quiz {
-            background: linear-gradient(to right, #e91e63, #ff9800);
+            background: linear-gradient(45deg, var(--rosa-bi), var(--roxo-bi));
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 1.2em;
+            padding: 15px 30px;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             border-radius: 50px;
             cursor: pointer;
             margin: 20px 0;
-            font-family: 'Comic Sans MS', cursive;
-            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+            font-family: 'Bungee', cursive;
+            box-shadow: 0 5px 15px rgba(214, 2, 112, 0.6),
+                        inset 0 0 10px rgba(255, 255, 255, 0.3);
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            width: 100%;
+            max-width: 400px;
         }
+        
+        .btn-quiz::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0) 45%,
+                rgba(255,255,255,0.5) 50%,
+                rgba(255,255,255,0) 55%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        
         .btn-quiz:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(214, 2, 112, 0.8),
+                        inset 0 0 15px rgba(255, 255, 255, 0.5);
         }
+        
+        .btn-quiz:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .ranking {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 30px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--sombra);
+        }
+        
+        .ranking h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+            color: var(--destaque);
+            margin-top: 0;
+            text-shadow: 2px 2px 0 var(--rosa-bi);
+            margin-bottom: 20px;
+        }
+        
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        
+        .ranking-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--destaque);
+        }
+        
+        .ranking-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .posicao {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+            color: var(--destaque);
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+        
+        .primeiro .posicao {
+            color: #FFD700;
+        }
+        
+        .segundo .posicao {
+            color: #C0C0C0;
+        }
+        
+        .trofeu {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin: 0 15px;
+        }
+        
+        .primeiro {
+            background: linear-gradient(90deg, rgba(255,215,0,0.2), rgba(255,255,255,0.1));
+            border-left: 5px solid #FFD700;
+        }
+        
+        .segundo {
+            background: linear-gradient(90deg, rgba(192,192,192,0.2), rgba(255,255,255,0.1));
+            border-left: 5px solid #C0C0C0;
+        }
+        
+        .ranking-info {
+            text-align: left;
+            flex: 1;
+        }
+        
+        .ranking-info strong {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: white;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .ranking-info p {
+            margin: 0;
+            color: rgba(255,255,255,0.8);
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .bi-flag {
+            height: 10px;
+            width: 100%;
+            background: linear-gradient(to right, 
+                var(--rosa-bi) 40%, 
+                var(--roxo-bi) 20%, 
+                var(--azul-bi) 40%);
+            margin: 30px 0;
+            border-radius: 5px;
+            box-shadow: var(--sombra);
+        }
+        
+        .site-footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--destaque), transparent);
+        }
+        
+        /* Modal do Quiz */
         .modal {
             display: none;
             position: fixed;
-            z-index: 100;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
             animation: fadeIn 0.3s;
+            overflow-y: auto;
         }
+        
         @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
+        
         .modal-content {
-            background: linear-gradient(135deg, #ffeb3b, #ffc107);
+            background: linear-gradient(135deg, rgba(30,30,40,0.9), rgba(50,50,70,0.95));
             margin: 5% auto;
-            padding: 25px;
-            border-radius: 15px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            border: 3px solid #e91e63;
+            padding: 30px;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 700px;
+            box-shadow: 0 0 50px rgba(214, 2, 112, 0.5),
+                        inset 0 0 10px rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--rosa-bi);
             position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: all 0.5s;
             max-height: 80vh;
             overflow-y: auto;
         }
+        
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, var(--rosa-bi), var(--roxo-bi), var(--azul-bi));
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.5;
+        }
+        
         .close {
             position: absolute;
+            top: 15px;
             right: 20px;
-            top: 10px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #e91e63;
-            cursor: pointer;
-        }
-        .pergunta {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 10px;
-        }
-        .opcoes {
-            margin-left: 20px;
-        }
-        .opcao {
-            margin: 5px 0;
-        }
-        #resultado {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #e91e63;
-            margin-top: 20px;
-            padding: 10px;
-            background: white;
-            border-radius: 10px;
-            display: none;
-        }
-        #enviarQuiz {
-            background: #e91e63;
+            font-size: 2rem;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
             cursor: pointer;
-            font-size: 1.1em;
-            margin-top: 15px;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px var(--rosa-bi);
+            background: none;
+            border: none;
+            z-index: 10;
+        }
+        
+        .close:hover {
+            color: var(--destaque);
+            transform: rotate(90deg) scale(1.2);
+        }
+        
+        .quiz-title {
+            color: var(--destaque);
+            font-family: 'Bungee', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            text-shadow: 3px 3px 0 var(--rosa-bi);
+            position: relative;
+        }
+        
+        .quiz-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--destaque), transparent);
+            border-radius: 50%;
+        }
+        
+        .pergunta {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--destaque);
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .pergunta:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .pergunta p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-top: 0;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .opcoes {
+            margin-left: 10px;
+        }
+        
+        .opcao {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 35px;
+        }
+        
+        .opcao input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .opcao label {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: rgba(255,255,255,0.9);
+            transition: all 0.3s;
+            line-height: 1.4;
+        }
+        
+        .opcao label::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--destaque);
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
             transition: all 0.3s;
         }
+        
+        .opcao input[type="radio"]:checked + label::before {
+            background: var(--destaque);
+            box-shadow: 0 0 10px var(--destaque);
+        }
+        
+        .opcao input[type="radio"]:checked + label {
+            color: var(--destaque);
+            text-shadow: 0 0 5px rgba(255,215,0,0.5);
+        }
+        
+        .opcao:hover label {
+            transform: translateX(5px);
+        }
+        
+        #enviarQuiz {
+            background: linear-gradient(45deg, var(--destaque), #FF8C00);
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Bungee', cursive;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5),
+                        inset 0 0 10px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 300px;
+        }
+        
         #enviarQuiz:hover {
-            background: #c2185b;
-            transform: scale(1.05);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.7),
+                        inset 0 0 15px rgba(255, 255, 255, 0.5);
         }
-        .quiz-footer {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(233, 30, 99, 0.8);
-            color: white;
-            border-radius: 10px;
-            font-size: 0.9em;
+        
+        #enviarQuiz:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        #resultado {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: bold;
+            color: var(--destaque);
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            display: none;
+            border: 2px dashed var(--destaque);
             text-align: center;
+            animation: fadeIn 0.5s;
+            text-shadow: 1px 1px 0 #000;
         }
-        .site-footer {
+        
+        .quiz-footer {
             margin-top: 30px;
-            padding: 15px;
+            padding: 20px;
+            background: linear-gradient(90deg, var(--rosa-bi), var(--roxo-bi), var(--azul-bi));
+            border-radius: 15px;
             color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--destaque), transparent);
+        }
+        
+        /* Efeitos de partículas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Barra de progresso do quiz */
+        .progress-container {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+            height: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--rosa-bi), var(--destaque));
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        /* Contador de perguntas */
+        .question-counter {
+            text-align: right;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Mensagem de carregamento */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            color: var(--destaque);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Navegação do quiz */
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        /* ==================== RESPONSIVIDADE AVANÇADA ==================== */
+        
+        /* Dispositivos médios (tablets, 768px e abaixo) */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                animation: gradientBG 20s ease infinite; /* Mais lento para performance */
+            }
+            
+            .container {
+                margin: 10px auto;
+                padding: 20px;
+                border-radius: 20px;
+                backdrop-filter: blur(5px); /* Reduzido para performance */
+            }
+            
+            h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+                line-height: 1.1;
+            }
+            
+            h2 {
+                font-size: clamp(1.3rem, 4vw, 1.8rem);
+            }
+            
+            .ranking-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+            
+            .trofeu {
+                margin: 10px 0 10px -5px;
+                font-size: 2rem;
+            }
+            
+            .ranking-info strong {
+                font-size: clamp(1rem, 3vw, 1.2rem);
+            }
+            
+            /* Modal */
+            .modal-content {
+                padding: 20px;
+                margin: 10% auto;
+                max-height: 85vh;
+                border-radius: 20px;
+            }
+            
+            .quiz-title {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+                margin-bottom: 20px;
+            }
+            
+            .pergunta {
+                padding: 15px;
+            }
+            
+            .pergunta p {
+                font-size: clamp(1rem, 3vw, 1.1rem);
+            }
+            
+            .opcao {
+                margin: 12px 0;
+                padding-left: 30px;
+            }
+            
+            .opcao label {
+                font-size: clamp(0.9rem, 3vw, 1rem);
+            }
+            
+            .opcao label::before {
+                left: -30px;
+                width: 18px;
+                height: 18px;
+            }
+            
+            #enviarQuiz, .btn-quiz {
+                padding: 12px 20px;
+                font-size: clamp(1rem, 3vw, 1.2rem);
+            }
+            
+            /* Desativa efeitos pesados em mobile */
+            .container::before, .foto-container::before {
+                animation: none;
+                display: none;
+            }
+            
+            .foto-container {
+                animation: floatMobile 6s ease-in-out infinite;
+            }
+            
+            @keyframes floatMobile {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+        }
+        
+        /* Dispositivos pequenos (telefones, 480px e abaixo) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+                margin: 5px auto;
+            }
+            
+            h1 {
+                font-size: clamp(1.8rem, 9vw, 2.5rem);
+            }
+            
+            h1::after {
+                height: 3px;
+                bottom: -5px;
+            }
+            
+            .foto-container {
+                width: min(200px, 65vw);
+                height: min(200px, 65vw);
+                margin: 20px auto;
+            }
+            
+            .buzina-btn {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+                margin: 15px 0;
+            }
+            
+            .ranking {
+                padding: 15px;
+            }
+            
+            .ranking h3 {
+                font-size: clamp(1.3rem, 5vw, 1.6rem);
+            }
+            
+            .ranking-item {
+                padding: 12px;
+                margin: 10px 0;
+            }
+            
+            .posicao {
+                min-width: 40px;
+                font-size: 1.3rem;
+            }
+            
+            .ranking-info p {
+                font-size: 0.8rem;
+            }
+            
+            /* Modal */
+            .modal-content {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            .quiz-title {
+                font-size: clamp(1.3rem, 7vw, 1.8rem);
+            }
+            
+            .pergunta {
+                padding: 12px;
+            }
+            
+            .opcao {
+                margin: 10px 0;
+                padding-left: 25px;
+            }
+            
+            .opcao label::before {
+                left: -25px;
+                width: 16px;
+                height: 16px;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .navigation-buttons button {
+                width: 100%;
+                margin: 5px 0 !important;
+            }
+            
+            /* Ajustes de performance */
+            .particles {
+                display: none; /* Desativa partículas em mobile */
+            }
+            
+            body {
+                animation: none;
+                background: linear-gradient(135deg, var(--rosa-bi), var(--roxo-bi), var(--azul-bi));
+            }
+        }
+        
+        /* Dispositivos muito pequenos (360px e abaixo) */
+        @media (max-width: 360px) {
+            .container {
+                padding: 12px;
+            }
+            
+            h1 {
+                font-size: clamp(1.5rem, 10vw, 2rem);
+            }
+            
+            .foto-container {
+                width: min(180px, 60vw);
+                height: min(180px, 60vw);
+            }
+            
+            .btn-quiz {
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+            
+            .ranking-info strong {
+                font-size: 1rem;
+            }
+            
+            .ranking-info p {
+                font-size: 0.75rem;
+            }
+            
+            .site-footer {
+                padding: 15px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Orientação paisagem */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .container {
+                max-width: 95%;
+                margin: 10px auto;
+                padding: 15px;
+            }
+            
+            .foto-container {
+                width: 120px;
+                height: 120px;
+                margin: 10px auto;
+            }
+            
+            .ranking-item {
+                padding: 10px;
+                margin: 8px 0;
+            }
+            
+            .modal-content {
+                margin: 2% auto;
+                max-height: 90vh;
+                padding: 15px;
+            }
+            
+            .pergunta {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .opcao {
+                margin: 8px 0;
+            }
+        }
+        
+        /* Dark mode preference */
+        @media (prefers-color-scheme: dark) {
+            .container {
+                background: rgba(0, 0, 0, 0.3);
+            }
+            
+            .ranking {
+                background: rgba(0, 0, 0, 0.2);
+            }
+        }
+        
+        /* Redução de movimento */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            .foto-container {
+                animation: none !important;
+            }
+            
+            .buzina-btn {
+                animation: none !important;
+            }
+            
+            .btn-quiz::before {
+                animation: none !important;
+            }
+            
+            .container::before, .foto-container::before {
+                animation: none !important;
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Efeito de partículas -->
+    <div class="particles" id="particles-js"></div>
+    
     <div class="container">
-        <h1>🎉 BUZINA DE ANIVERSÁRIO 🎉</h1>
-        <h2>Para o incrível [Nome do Seu Amigo]!</h2>
+        <div class="bi-flag"></div>
+        <h1>🎉 ANIVERSÁRIO DO BUZINA 🎉</h1>
+        <h2>O MAIS DESCOLADO DA FT!</h2>
         
-        <img src="foto_engracada_do_amigo.jpg" alt="[Nome] sendo descolado" class="foto">
-        
-        <div class="buzina" onclick="tocarBuzina()">📯</div>
-        <p>Clique na buzina para comemorar!</p>
-        
-        <button class="btn-quiz" onclick="abrirQuiz()">TESTE SEU CONHECIMENTO SOBRE [NOME]!</button>
-        
-        <div class="mensagens">
-            <h3>Motivos pelo qual [Nome] é especial:</h3>
-            <ul>
-                <li>É o único que sabe fazer aquele barulho engraçado com a axila</li>
-                <li>Sempre tem uma piada ruim na ponta da língua</li>
-                <li>Consegue comer um pacote inteiro de bolacha em 2 minutos</li>
-                <li>Inventou a dança do "pé torcido" que só ele sabe fazer</li>
-            </ul>
-            
-            <h3>Memórias engraçadas:</h3>
-            <p>Lembra quando [Nome] [insira situação engraçada]? A gente nunca vai esquecer!</p>
+        <div class="foto-container">
+            <img src="https://i.imgur.com/xyz1234.jpg" alt="Buzina sendo descolado" class="foto" id="fotoBuzina">
         </div>
+        
+        <button class="buzina-btn" onclick="tocarBuzina()" aria-label="Tocar buzina de festa">📯</button>
+        <p style="font-size: 1.2rem; color: var(--destaque);">CLIQUE NA BUZINA PARA CELEBRAR!</p>
+        
+        <div class="btn-container">
+            <button class="btn-quiz" onclick="abrirQuiz()">
+                <i class="fas fa-question-circle"></i> QUIZ: QUÃO BEM VOCÊ CONHECE O BUZINA?
+            </button>
+        </div>
+        
+        <div class="ranking">
+            <h3><i class="fas fa-trophy"></i> TOP 2 MAIS DESCOLADOS DA FT <i class="fas fa-trophy"></i></h3>
+            
+            <div class="ranking-item primeiro">
+                <div class="posicao">1º</div>
+                <div class="trofeu">🥇</div>
+                <div class="ranking-info">
+                    <strong>BUZINA</strong>
+                    <p>Rei do estilo, mestre das poses e campeão da zoeira!</p>
+                </div>
+            </div>
+            
+            <div class="ranking-item segundo">
+                <div class="posicao">2º</div>
+                <div class="trofeu">🥈</div>
+                <div class="ranking-info">
+                    <strong>[RIVAL DO BUZINA]</strong>
+                    <p>Tenta, mas nunca alcança o nível do mestre!</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <p style="font-size: 1.3rem; color: var(--destaque); font-style: italic;">
+                    "Seria Buzina a pessoa mais descolada da FT?<br>
+                    <span style="font-size: 1.8rem; text-shadow: 2px 2px 0 var(--rosa-bi);">ÓBVIO QUE SIM!</span>"
+                </p>
+            </div>
+        </div>
+        
+        <div class="bi-flag"></div>
         
         <div class="site-footer">
-            <p>Feito com ❤️ pelos amigos que aguentam [Nome] no dia a dia</p>
-            <p>© 2023 - Todos os direitos (e vergonhas) reservados</p>
+            <p>Feito com ❤️ pelos fãs número 1 do Buzina</p>
+            <p>© 2025 - Todos os direitos (e zoeiras) reservados</p>
         </div>
         
-        <audio id="buzinaAudio" src="https://www.soundjay.com/human/sounds/party-horn-01.mp3"></audio>
+        <audio id="buzinaAudio" src="https://www.soundjay.com/human/sounds/party-horn-01.mp3" preload="auto"></audio>
+        <audio id="aplausosAudio" src="https://www.soundjay.com/human/sounds/applause-01.mp3" preload="auto"></audio>
     </div>
 
     <!-- Modal do Quiz -->
     <div id="quizModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="fecharQuiz()">&times;</span>
-            <h2>Quiz: Quão bem você conhece o [Nome]?</h2>
+            <button class="close" onclick="fecharQuiz()" aria-label="Fechar quiz">&times;</button>
+            <h2 class="quiz-title"><i class="fas fa-star"></i> QUIZ DO BUZINA <i class="fas fa-star"></i></h2>
+            
+            <div class="question-counter" id="questionCounter">Pergunta 1 de 6</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
             
             <form id="quizForm">
-                <div class="pergunta">
-                    <p>1. Qual é a comida favorita de [Nome]?</p>
+                <div class="pergunta" id="pergunta1" data-pergunta="1">
+                    <p>1. Qual é o superpoder secreto do Buzina?</p>
                     <div class="opcoes">
-                        <div class="opcao"><input type="radio" name="q1" value="a"> Pizza com abacaxi (o crime perfeito)</div>
-                        <div class="opcao"><input type="radio" name="q1" value="b"> Strogonoff da mãe dele</div>
-                        <div class="opcao"><input type="radio" name="q1" value="c"> Qualquer coisa que esteja no prato dos outros</div>
+                        <div class="opcao">
+                            <input type="radio" id="q1a" name="q1" value="a" onclick="atualizarProgresso(1)">
+                            <label for="q1a">Fazer barulhos engraçados com qualquer parte do corpo</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q1b" name="q1" value="b" onclick="atualizarProgresso(1)">
+                            <label for="q1b">Dormir em qualquer lugar, em qualquer posição</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q1c" name="q1" value="c" onclick="atualizarProgresso(1)">
+	                        <label for="q1c">Ambos acima (e mais alguns que não podemos revelar)</label>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="pergunta">
-                    <p>2. Qual foi a maior vergonha que [Nome] já passou?</p>
+                <div class="pergunta" id="pergunta2" data-pergunta="2" style="display:none;">
+                    <p>2. Qual foi a maior façanha do Buzina?</p>
                     <div class="opcoes">
-                        <div class="opcao"><input type="radio" name="q2" value="a"> Cantou no karaokê achando que estava sozinho, mas todo mundo viu</div>
-                        <div class="opcao"><input type="radio" name="q2" value="b"> Caiu no meio da rua e fingiu que estava fazendo flexão</div>
-                        <div class="opcao"><input type="radio" name="q2" value="c"> Chamou o professor de "mãe" sem querer</div>
+                        <div class="opcao">
+                            <input type="radio" id="q2a" name="q2" value="a" onclick="atualizarProgresso(2)">
+                            <label for="q2a">Comer 20 pasteis em uma sentada</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q2b" name="q2" value="b" onclick="atualizarProgresso(2)">
+                            <label for="q2b">Fazer uma piada tão ruim que ficou boa</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q2c" name="q2" value="c" onclick="atualizarProgresso(2)">
+                            <label for="q2c">Inventar uma dança nova enquanto caía</label>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="pergunta">
-                    <p>3. Qual é o talento secreto de [Nome]?</p>
+                <div class="pergunta" id="pergunta3" data-pergunta="3" style="display:none;">
+                    <p>3. Qual seria o nome do filme sobre a vida do Buzina?</p>
                     <div class="opcoes">
-                        <div class="opcao"><input type="radio" name="q3" value="a"> Imitar personagens de desenho animado</div>
-                        <div class="opcao"><input type="radio" name="q3" value="b"> Fazer barulhos engraçados com o corpo</div>
-                        <div class="opcao"><input type="radio" name="q3" value="c"> Dormir em qualquer lugar, em qualquer posição</div>
+                        <div class="opcao">
+                            <input type="radio" id="q3a" name="q3" value="a" onclick="atualizarProgresso(3)">
+                            <label for="q3a">"Buzina: O Descolado Supremo"</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q3b" name="q3" value="b" onclick="atualizarProgresso(3)">
+                            <label for="q3b">"101 Maneiras de Fazer Vergonha e se Tornar Lendário"</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q3c" name="q3" value="c" onclick="atualizarProgresso(3)">
+                            <label for="q3c">"Não Era Isso Que Eu Queria Dizer: A História"</label>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="pergunta">
-                    <p>4. Qual foi a fase mais estranha de [Nome]?</p>
+                <div class="pergunta" id="pergunta4" data-pergunta="4" style="display:none;">
+                    <p>4. Qual é o lema de vida do Buzina?</p>
                     <div class="opcoes">
-                        <div class="opcao"><input type="radio" name="q4" value="a"> Quando só usava roupas coloridas demais</div>
-                        <div class="opcao"><input type="radio" name="q4" value="b"> A fase em que tentou fazer dreadlocks em casa</div>
-                        <div class="opcao"><input type="radio" name="q4" value="c"> Quando decidiu que ia virar vegetariano, mas durou 3 dias</div>
+                        <div class="opcao">
+                            <input type="radio" id="q4a" name="q4" value="a" onclick="atualizarProgresso(4)">
+                            <label for="q4a">"Se não der certo, pelo menos foi engraçado"</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q4b" name="q4" value="b" onclick="atualizarProgresso(4)">
+                            <label for="q4b">"Por que ser normal quando posso ser eu mesmo?"</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q4c" name="q4" value="c" onclick="atualizarProgresso(4)">
+                            <label for="q4c">"Não sou bêbado, o chão que tá inclinado"</label>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="pergunta">
-                    <p>5. Qual é a mania mais irritante de [Nome]?</p>
+                <div class="pergunta" id="pergunta5" data-pergunta="5" style="display:none;">
+                    <p>5. Qual dessas frases o Buzina JAMAIS diria?</p>
                     <div class="opcoes">
-                        <div class="opcao"><input type="radio" name="q5" value="a"> Cantarolar músicas sem saber a letra</div>
-                        <div class="opcao"><input type="radio" name="q5" value="b"> Pegar comida do seu prato sem pedir</div>
-                        <div class="opcao"><input type="radio" name="q5" value="c"> Contar spoilers de filmes e séries</div>
+                        <div class="opcao">
+                            <input type="radio" id="q5a" name="q5" value="a" onclick="atualizarProgresso(5)">
+                            <label for="q5a">"Prefiro ficar em casa quieto hoje"</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q5b" name="q5" value="b" onclick="atualizarProgresso(5)">
+                            <label for="q5b">"Vou evitar essa zoeira, pode dar vergonha"</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q5c" name="q5" value="c" onclick="atualizarProgresso(5)">
+                            <label for="q5c">Ambos acima (ele nunca diria isso!)</label>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="pergunta">
-                    <p>6. Qual dessas frases [Nome] já disse sério?</p>
+                <div class="pergunta" id="pergunta6" data-pergunta="6" style="display:none;">
+                    <p>6. Qual é a resposta CORRETA para: "Seria Buzina a pessoa mais descolada da FT?"</p>
                     <div class="opcoes">
-                        <div class="opcao"><input type="radio" name="q6" value="a"> "A internet é uma coisa passageira"</div>
-                        <div class="opcao"><input type="radio" name="q6" value="b"> "Posso comer 20 pasteis, fácil"</div>
-                        <div class="opcao"><input type="radio" name="q6" value="c"> "Não, eu não to bêbado, o chão que tá inclinado"</div>
+                        <div class="opcao">
+                            <input type="radio" id="q6a" name="q6" value="a" onclick="atualizarProgresso(6)">
+                            <label for="q6a">ÓBVIO! Ninguém chega aos pés dele</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q6b" name="q6" value="b" onclick="atualizarProgresso(6)">
+                            <label for="q6b">Ele é top 3, mas tem concorrência</label>
+                        </div>
+                        <div class="opcao">
+                            <input type="radio" id="q6c" name="q6" value="c" onclick="atualizarProgresso(6)">
+                            <label for="q6c">Só se for no ranking da zoeira</label>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="pergunta">
-                    <p>7. Se [Nome] fosse um animal, qual seria?</p>
-                    <div class="opcoes">
-                        <div class="opcao"><input type="radio" name="q7" value="a"> Um cachorro - sempre animado e com fome</div>
-                        <div class="opcao"><input type="radio" name="q7" value="b"> Um gato - dorme o dia todo e é dono da razão</div>
-                        <div class="opcao"><input type="radio" name="q7" value="c"> Um panda - desastrado mas todo mundo ama</div>
-                    </div>
+                <div class="navigation-buttons">
+                    <button type="button" class="btn-quiz" id="btnAnterior" onclick="navegarPergunta(-1)" style="display:none;">
+                        <i class="fas fa-arrow-left"></i> Anterior
+                    </button>
+                    <button type="button" class="btn-quiz" id="btnProximo" onclick="navegarPergunta(1)">
+                        Próxima <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button type="button" id="enviarQuiz" onclick="verificarRespostas()" style="display:none;">
+                        VER RESULTADO! <i class="fas fa-award"></i>
+                    </button>
                 </div>
                 
-                <div class="pergunta">
-                    <p>8. Qual seria o nome da autobiografia de [Nome]?</p>
-                    <div class="opcoes">
-                        <div class="opcao"><input type="radio" name="q8" value="a"> "Como Sobrevivi às Minhas Próprias Ideias"</div>
-                        <div class="opcao"><input type="radio" name="q8" value="b"> "101 Maneiras de Fazer Vergonha em Público"</div>
-                        <div class="opcao"><input type="radio" name="q8" value="c"> "Não Era Isso Que Eu Queria Dizer: A Vida de Um Sem Noção"</div>
-                    </div>
+                <div class="loading" id="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>Calculando seu nível de conhecimento sobre o Buzina...</p>
                 </div>
-                
-                <button type="button" id="enviarQuiz" onclick="verificarRespostas()">Enviar Respostas!</button>
                 
                 <div id="resultado"></div>
                 
-                <!-- Rodapé do Quiz -->
                 <div class="quiz-footer">
-                    <p>🎂 Feliz Aniversário, [Nome]! 🎂</p>
-                    <p>Esperamos que esse quiz tenha capturado pelo menos 37% da sua essência única!</p>
-                    <p>PS: Se você é o [Nome] e errou muitas questões, talvez deva se conhecer melhor!</p>
+                    <p style="font-size: 1.5rem; margin-bottom: 10px;">🎂 FELIZ ANIVERSÁRIO, BUZINA! 🎂</p>
+                    <p>Que seu dia seja tão incrível e descolado quanto você!</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">PS: Se você não acertou todas, precisa passar mais tempo com essa lenda!</p>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
+        // Efeitos sonoros
+        const buzinaAudio = document.getElementById('buzinaAudio');
+        const aplausosAudio = document.getElementById('aplausosAudio');
+        
+        // Configuração inicial do quiz
+        let perguntaAtual = 1;
+        const totalPerguntas = 6;
+        const respostasCorretas = {
+            q1: "c",
+            q2: "c",
+            q3: "a",
+            q4: "b",
+            q5: "c",
+            q6: "a"
+        };
+        
+        // Tocar buzina
         function tocarBuzina() {
-            const audio = document.getElementById('buzinaAudio');
-            audio.currentTime = 0;
-            audio.play();
-            
-            const buzina = document.querySelector('.buzina');
-            buzina.style.transform = 'scale(1.5) rotate(20deg)';
-            setTimeout(() => {
-                buzina.style.transform = 'scale(1)';
-            }, 200);
-            
-            if (window.confetti) {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
+            try {
+                buzinaAudio.currentTime = 0;
+                buzinaAudio.play().catch(e => console.log("Erro ao tocar buzina:", e));
+                
+                // Efeito visual
+                const buzina = document.querySelector('.buzina-btn');
+                buzina.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    buzina.style.transform = 'scale(1)';
+                }, 300);
+                
+                // Confetti
+                if (window.confetti) {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#D60270', '#9B4F96', '#0038A8', '#FFD700']
+                    });
+                }
+            } catch (e) {
+                console.error("Erro no efeito da buzina:", e);
             }
         }
         
-        // Funções do Quiz
+        // Quiz functions
         function abrirQuiz() {
-            document.getElementById('quizModal').style.display = 'block';
-            tocarBuzina(); // Toca a buzina quando abre o quiz
+            try {
+                document.getElementById('quizModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                tocarBuzina();
+                atualizarProgresso(1);
+                atualizarBotoesNavegacao();
+            } catch (e) {
+                console.error("Erro ao abrir quiz:", e);
+            }
         }
         
         function fecharQuiz() {
-            document.getElementById('quizModal').style.display = 'none';
-            document.getElementById('resultado').style.display = 'none';
-            // Reseta o formulário
-            document.getElementById('quizForm').reset();
+            try {
+                document.getElementById('quizModal').style.display = 'none';
+                document.getElementById('resultado').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Resetar quiz
+                perguntaAtual = 1;
+                document.querySelectorAll('.pergunta').forEach((pergunta, index) => {
+                    pergunta.style.display = index === 0 ? 'block' : 'none';
+                });
+                
+                // Resetar seleções
+                document.querySelectorAll('input[type="radio"]').forEach(input => {
+                    input.checked = false;
+                });
+                
+                // Resetar progresso
+                atualizarProgresso(1);
+                atualizarBotoesNavegacao();
+            } catch (e) {
+                console.error("Erro ao fechar quiz:", e);
+            }
+        }
+        
+        function atualizarProgresso(perguntaNum) {
+            try {
+                perguntaAtual = perguntaNum;
+                document.getElementById('questionCounter').textContent = `Pergunta ${perguntaNum} de ${totalPerguntas}`;
+                const progresso = (perguntaNum / totalPerguntas) * 100;
+                document.getElementById('progressBar').style.width = `${progresso}%`;
+                
+                // Atualizar visibilidade das perguntas
+                document.querySelectorAll('.pergunta').forEach(pergunta => {
+                    pergunta.style.display = 'none';
+                });
+                document.getElementById(`pergunta${perguntaNum}`).style.display = 'block';
+                
+                atualizarBotoesNavegacao();
+            } catch (e) {
+                console.error("Erro ao atualizar progresso:", e);
+            }
+        }
+        
+        function navegarPergunta(direcao) {
+            try {
+                const novaPergunta = perguntaAtual + direcao;
+                if (novaPergunta >= 1 && novaPergunta <= totalPerguntas) {
+                    atualizarProgresso(novaPergunta);
+                }
+            } catch (e) {
+                console.error("Erro ao navegar entre perguntas:", e);
+            }
+        }
+        
+        function atualizarBotoesNavegacao() {
+            try {
+                const btnAnterior = document.getElementById('btnAnterior');
+                const btnProximo = document.getElementById('btnProximo');
+                const btnEnviar = document.getElementById('enviarQuiz');
+                
+                btnAnterior.style.display = perguntaAtual > 1 ? 'inline-block' : 'none';
+                btnProximo.style.display = perguntaAtual < totalPerguntas ? 'inline-block' : 'none';
+                btnEnviar.style.display = perguntaAtual === totalPerguntas ? 'inline-block' : 'none';
+            } catch (e) {
+                console.error("Erro ao atualizar botões de navegação:", e);
+            }
         }
         
         function verificarRespostas() {
-            const respostasCorretas = ['c', 'b', 'a', 'b', 'c', 'b', 'a', 'c']; // Substitua pelas respostas corretas
-            let pontuacao = 0;
-            
-            // Verifica cada pergunta
-            for (let i = 1; i <= 8; i++) {
-                const selecionada = document.querySelector(`input[name="q${i}"]:checked`);
-                if (selecionada && selecionada.value === respostasCorretas[i-1]) {
-                    pontuacao++;
-                }
+            try {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('enviarQuiz').style.display = 'none';
+                
+                // Simular processamento
+                setTimeout(() => {
+                    let pontuacao = 0;
+                    
+                    // Verifica cada pergunta
+                    for (let i = 1; i <= totalPerguntas; i++) {
+                        const selecionada = document.querySelector(`input[name="q${i}"]:checked`);
+                        if (selecionada && selecionada.value === respostasCorretas[`q${i}`]) {
+                            pontuacao++;
+                        }
+                    }
+                    
+                    const resultado = document.getElementById('resultado');
+                    resultado.style.display = 'block';
+                    document.getElementById('loading').style.display = 'none';
+                    
+                    let mensagem = '';
+                    if (pontuacao === totalPerguntas) {
+                        mensagem = `🌟 PERFEITO! ${pontuacao}/${totalPerguntas}! Você é expert em Buzina! 🌟`;
+                        tocarAplausos();
+                        
+                        // Confetti para acerto total
+                        if (window.confetti) {
+                            confetti({
+                                particleCount: 150,
+                                spread: 90,
+                                origin: { y: 0.6 },
+                                colors: ['#D60270', '#9B4F96', '#0038A8', '#FFD700']
+                            });
+                        }
+                    } else if (pontuacao >= totalPerguntas * 0.7) {
+                        mensagem = `👍 BOM! ${pontuacao}/${totalPerguntas}! Você conhece bem o Buzina!`;
+                    } else if (pontuacao >= totalPerguntas * 0.4) {
+                        mensagem = `🤔 ${pontuacao}/${totalPerguntas}? Precisa sair mais com o Buzina!`;
+                    } else {
+                        mensagem = `😅 ${pontuacao}/${totalPerguntas}? Você conhece o Buzina mesmo?`;
+                    }
+                    
+                    resultado.innerHTML = mensagem;
+                    resultado.scrollIntoView({ behavior: 'smooth' });
+                }, 1500);
+            } catch (e) {
+                console.error("Erro ao verificar respostas:", e);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('resultado').innerHTML = "Ocorreu um erro ao calcular seu resultado. Tente novamente!";
+                document.getElementById('resultado').style.display = 'block';
             }
-            
-            // Mostra o resultado
-            const resultado = document.getElementById('resultado');
-            resultado.style.display = 'block';
-            
-            let mensagem = '';
-            if (pontuacao === 8) {
-                mensagem = `PERFEITO! Você acertou ${pontuacao}/8! Você conhece o [Nome] melhor que ele mesmo!`;
-            } else if (pontuacao >= 5) {
-                mensagem = `MUITO BEM! Você acertou ${pontuacao}/8! Você e [Nome] são bons amigos!`;
-            } else if (pontuacao >= 3) {
-                mensagem = `RAZOÁVEL! Você acertou ${pontuacao}/8. Precisa passar mais tempo com [Nome]!`;
-            } else {
-                mensagem = `HMM... só ${pontuacao}/8? Você realmente conhece o [Nome]?`;
-            }
-            
-            resultado.innerHTML = mensagem;
-            
-            // Rola até o resultado
-            resultado.scrollIntoView({ behavior: 'smooth' });
         }
         
-        // Fecha o modal se clicar fora dele
+        function tocarAplausos() {
+            try {
+                aplausosAudio.currentTime = 0;
+                aplausosAudio.play().catch(e => console.log("Erro ao tocar aplausos:", e));
+            } catch (e) {
+                console.error("Erro no efeito de aplausos:", e);
+            }
+        }
+        
+        // Efeito de parallax suave
+        if (window.matchMedia("(hover: hover)").matches) {
+            document.addEventListener('mousemove', function(e) {
+                try {
+                    const container = document.querySelector('.container');
+                    const x = (e.clientX / window.innerWidth - 0.5) * 10;
+                    const y = (0.5 - e.clientY / window.innerHeight) * 10;
+                    
+                    container.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+                } catch (e) {
+                    console.error("Erro no efeito parallax:", e);
+                }
+            });
+            
+            // Resetar rotação quando o mouse sair
+            document.querySelector('.container').addEventListener('mouseleave', function() {
+                this.style.transform = 'none';
+            });
+        }
+        
+        // Fechar modal ao clicar fora
         window.onclick = function(event) {
             if (event.target == document.getElementById('quizModal')) {
                 fecharQuiz();
             }
         }
+        
+        // Carregar imagem alternativa se a principal falhar
+        document.getElementById('fotoBuzina').onerror = function() {
+            this.src = 'https://via.placeholder.com/250x250/9B4F96/FFFFFF?text=BUZINA';
+            this.alt = 'Imagem alternativa do Buzina';
+        };
+        
+        // Inicializar partículas
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (window.particlesJS) {
+                    particlesJS('particles-js', {
+                        "particles": {
+                            "number": {
+                                "value": 80,
+                                "density": {
+                                    "enable": true,
+                                    "value_area": 800
+                                }
+                            },
+                            "color": {
+                                "value": ["#D60270", "#9B4F96", "#0038A8", "#FFD700"]
+                            },
+                            "shape": {
+                                "type": "circle",
+                                "stroke": {
+                                    "width": 0,
+                                    "color": "#000000"
+                                }
+                            },
+                            "opacity": {
+                                "value": 0.5,
+                                "random": true,
+                                "anim": {
+                                    "enable": true,
+                                    "speed": 1,
+                                    "opacity_min": 0.1,
+                                    "sync": false
+                                }
+                            },
+                            "size": {
+                                "value": 3,
+                                "random": true,
+                                "anim": {
+                                    "enable": true,
+                                    "speed": 2,
+                                    "size_min": 0.1,
+                                    "sync": false
+                                }
+                            },
+                            "line_linked": {
+                                "enable": true,
+                                "distance": 150,
+                                "color": "#FFD700",
+                                "opacity": 0.4,
+                                "width": 1
+                            },
+                            "move": {
+                                "enable": true,
+                                "speed": 1,
+                                "direction": "none",
+                                "random": true,
+                                "straight": false,
+                                "out_mode": "out",
+                                "bounce": false,
+                                "attract": {
+                                    "enable": true,
+                                    "rotateX": 600,
+                                    "rotateY": 1200
+                                }
+                            }
+                        },
+                        "interactivity": {
+                            "detect_on": "canvas",
+                            "events": {
+                                "onhover": {
+                                    "enable": true,
+                                    "mode": "grab"
+                                },
+                                "onclick": {
+                                    "enable": true,
+                                    "mode": "push"
+                                },
+                                "resize": true
+                            },
+                            "modes": {
+                                "grab": {
+                                    "distance": 140,
+                                    "line_linked": {
+                                        "opacity": 1
+                                    }
+                                },
+                                "push": {
+                                    "particles_nb": 4
+                                }
+                            }
+                        },
+                        "retina_detect": true
+                    });
+                }
+            } catch (e) {
+                console.error("Erro ao carregar partículas:", e);
+            }
+        });
     </script>
     
-    <!-- Confetti.js -->
+    <!-- Bibliotecas para efeitos especiais -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
