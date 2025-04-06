@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -666,6 +665,35 @@
             margin-top: 20px;
         }
         
+        /* Botão de tradução */
+        .translate-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, var(--rosa-bi), var(--roxo-bi));
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Bungee', cursive;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .translate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .translate-btn:active {
+            transform: translateY(0);
+        }
+        
         /* ==================== RESPONSIVIDADE AVANÇADA ==================== */
         
         /* Dispositivos médios (tablets, 768px e abaixo) */
@@ -760,6 +788,14 @@
             @keyframes floatMobile {
                 0%, 100% { transform: translateY(0); }
                 50% { transform: translateY(-10px); }
+            }
+            
+            /* Botão de tradução */
+            .translate-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
             }
         }
         
@@ -857,6 +893,14 @@
                 animation: none;
                 background: linear-gradient(135deg, var(--rosa-bi), var(--roxo-bi), var(--azul-bi));
             }
+            
+            /* Botão de tradução */
+            .translate-btn {
+                bottom: 10px;
+                right: 10px;
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
         }
         
         /* Dispositivos muito pequenos (360px e abaixo) */
@@ -890,6 +934,14 @@
             .site-footer {
                 padding: 15px;
                 font-size: 0.8rem;
+            }
+            
+            /* Botão de tradução */
+            .translate-btn {
+                bottom: 8px;
+                right: 8px;
+                padding: 5px 8px;
+                font-size: 0.7rem;
             }
         }
         
@@ -925,6 +977,13 @@
             
             .opcao {
                 margin: 8px 0;
+            }
+            
+            /* Botão de tradução */
+            .translate-btn {
+                bottom: 5px;
+                right: 5px;
+                padding: 4px 6px;
             }
         }
         
@@ -969,33 +1028,38 @@
     <!-- Efeito de partículas -->
     <div class="particles" id="particles-js"></div>
     
+    <!-- Botão de tradução -->
+    <button class="translate-btn" id="translateBtn">
+        <i class="fas fa-language"></i> <span>English</span>
+    </button>
+    
     <div class="container">
         <div class="bi-flag"></div>
-        <h1>🎉 ANIVERSÁRIO DO BUZINA 🎉</h1>
-        <h2>O MAIS LEGAL DA FT!</h2>
+        <h1 id="title">🎉 ANIVERSÁRIO DO BUZINA 🎉</h1>
+        <h2 id="subtitle">O MAIS LEGAL DA FT!</h2>
         
         <div class="foto-container">
             <img src="buzina.png" alt="Buzina" class="foto" id="fotoBuzina">
         </div>
         
         <button class="buzina-btn" onclick="tocarBuzina()" aria-label="Tocar buzina de festa">📯</button>
-        <p style="font-size: 1.2rem; color: var(--destaque);">CLIQUE NA TROMBETA PARA CELEBRAR!</p>
+        <p style="font-size: 1.2rem; color: var(--destaque);" id="celebrateText">CLIQUE NA TROMBETA PARA CELEBRAR!</p>
         
         <div class="btn-container">
             <button class="btn-quiz" onclick="abrirQuiz()">
-                <i class="fas fa-question-circle"></i> QUIZ: QUÃO BEM VOCÊ CONHECE O BUZINA?
+                <i class="fas fa-question-circle"></i> <span id="quizBtnText">QUIZ: QUÃO BEM VOCÊ CONHECE O BUZINA?</span>
             </button>
         </div>
         
         <div class="ranking">
-            <h3><i class="fas fa-trophy"></i> TOP 2 MAIS DAORA DA FT <i class="fas fa-trophy"></i></h3>
+            <h3><i class="fas fa-trophy"></i> <span id="rankingTitle">TOP 2 MAIS DAORA DA FT</span> <i class="fas fa-trophy"></i></h3>
             
             <div class="ranking-item primeiro">
                 <div class="posicao">1º</div>
                 <div class="trofeu">🥇</div>
                 <div class="ranking-info">
                     <strong>BUZINA</strong>
-                    <p>Ex ditador de marketing da CDI, ex ditador do Marsha, agora membro do Marsha</p>
+                    <p id="buzinaDesc">Ex ditador de marketing da CDI, ex ditador do Marsha, agora membro do Marsha</p>
                 </div>
             </div>
             
@@ -1004,13 +1068,13 @@
                 <div class="trofeu">🥈</div>
                 <div class="ranking-info">
                     <strong>Marketinho</strong>
-                    <p>Atual (quase) ditador do marketing da CDI, apenas uma vítima da ditadura do Marsha</p>
+                    <p id="marketinhoDesc">Atual (quase) ditador do marketing da CDI, apenas uma vítima da ditadura do Marsha</p>
                 </div>
             </div>
             
             <div style="text-align: center; margin-top: 20px;">
-                <p style="font-size: 1.3rem; color: var(--destaque); font-style: italic;">
-                    "Seria Buzina o mais descolada da FT?<br>
+                <p style="font-size: 1.3rem; color: var(--destaque); font-style: italic;" id="quoteText">
+                    "Seria Buzina o mais descolado da FT?<br>
                     <span style="font-size: 1.8rem; text-shadow: 2px 2px 0 var(--rosa-bi);">ÓBVIO QUE SIM!</span>"
                 </p>
             </div>
@@ -1019,7 +1083,7 @@
         <div class="bi-flag"></div>
         
         <div class="site-footer">
-            <p>Feito com ❤️ pelo amigo mais daora do Buzina</p>
+            <p id="footerText1">Feito com ❤️ pelo amigo mais daora do Buzina</p>
             <p>© 2025</p>
         </div>
         
@@ -1031,7 +1095,7 @@
     <div id="quizModal" class="modal">
         <div class="modal-content">
             <button class="close" onclick="fecharQuiz()" aria-label="Fechar quiz">&times;</button>
-            <h2 class="quiz-title"><i class="fas fa-star"></i> QUIZ DO BUZINA <i class="fas fa-star"></i></h2>
+            <h2 class="quiz-title"><i class="fas fa-star"></i> <span id="quizTitle">QUIZ DO BUZINA</span> <i class="fas fa-star"></i></h2>
             
             <div class="question-counter" id="questionCounter">Pergunta 1 de 6</div>
             <div class="progress-container">
@@ -1040,137 +1104,136 @@
             
             <form id="quizForm">
                 <div class="pergunta" id="pergunta1" data-pergunta="1">
-                    <p>1. Quais os nomes dos ratos do Buzina?</p>
+                    <p id="q1Text">1. Quais os nomes dos ratos do Buzina?</p>
                     <div class="opcoes">
                         <div class="opcao">
                             <input type="radio" id="q1a" name="q1" value="a" onclick="atualizarProgresso(1)">
-                            <label for="q1a">Double, Float</label>
+                            <label for="q1a" id="q1aText">Double, Float, Int</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q1b" name="q1" value="b" onclick="atualizarProgresso(1)">
-                            <label for="q1b">Double, Charlie</label>
+                            <label for="q1b" id="q1bText">Double, Charlie, Bidu</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q1c" name="q1" value="c" onclick="atualizarProgresso(1)">
-	                        <label for="q1c">Float, Charlie</label>
+                            <label for="q1c" id="q1cText">Float, Charlie, Double</label>
                         </div>
                     </div>
                 </div>
                 
                 <div class="pergunta" id="pergunta2" data-pergunta="2" style="display:none;">
-                    <p>2. Quantos namorades buzina tem?</p>
+                    <p id="q2Text">2. Quantos namorades buzina tem?</p>
                     <div class="opcoes">
                         <div class="opcao">
                             <input type="radio" id="q2a" name="q2" value="a" onclick="atualizarProgresso(2)">
-                            <label for="q2a">21</label>
+                            <label for="q2a" id="q2aText">21</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q2b" name="q2" value="b" onclick="atualizarProgresso(2)">
-                            <label for="q2b">23</label>
+                            <label for="q2b" id="q2bText">23</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q2c" name="q2" value="c" onclick="atualizarProgresso(2)">
-                            <label for="q2c">24</label>
+                            <label for="q2c" id="q2cText">24</label>
                         </div>
                     </div>
                 </div>
                 
                 <div class="pergunta" id="pergunta3" data-pergunta="3" style="display:none;">
-                    <p>3. Qual o nome do cachorro do Buzina?</p>
+                    <p id="q3Text">3. Qual o nome do cachorro do Buzina?</p>
                     <div class="opcoes">
                         <div class="opcao">
                             <input type="radio" id="q3a" name="q3" value="a" onclick="atualizarProgresso(3)">
-                            <label for="q3a">Bidu</label>
+                            <label for="q3a" id="q3aText">Bidu</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q3b" name="q3" value="b" onclick="atualizarProgresso(3)">
-                            <label for="q3b">Thor</label>
+                            <label for="q3b" id="q3bText">Thor</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q3c" name="q3" value="c" onclick="atualizarProgresso(3)">
-                            <label for="q3c">Molly</label>
+                            <label for="q3c" id="q3cText">Molly</label>
                         </div>
                     </div>
                 </div>
                 
                 <div class="pergunta" id="pergunta4" data-pergunta="4" style="display:none;">
-                    <p>4. O Buzina da aula do qual língua?</p>
+                    <p id="q4Text">4. O Buzina da aula do qual língua?</p>
                     <div class="opcoes">
                         <div class="opcao">
                             <input type="radio" id="q4a" name="q4" value="a" onclick="atualizarProgresso(4)">
-                            <label for="q4a">Japonês</label>
+                            <label for="q4a" id="q4aText">Japonês</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q4b" name="q4" value="b" onclick="atualizarProgresso(4)">
-                            <label for="q4b">Inglês</label>
+                            <label for="q4b" id="q4bText">Inglês</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q4c" name="q4" value="c" onclick="atualizarProgresso(4)">
-                            <label for="q4c">Sumério</label>
+                            <label for="q4c" id="q4cText">Sumério</label>
                         </div>
                     </div>
                 </div>
                 
                 <div class="pergunta" id="pergunta5" data-pergunta="5" style="display:none;">
-                    <p>5. Quantos anos buzina tem agora?</p>
+                    <p id="q5Text">5. Quantos anos buzina tem agora?</p>
                     <div class="opcoes">
                         <div class="opcao">
                             <input type="radio" id="q5a" name="q5" value="a" onclick="atualizarProgresso(5)">
-                            <label for="q5a">21</label>
+                            <label for="q5a" id="q5aText">21</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q5b" name="q5" value="b" onclick="atualizarProgresso(5)">
-                            <label for="q5b">19</label>
+                            <label for="q5b" id="q5bText">19</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q5c" name="q5" value="c" onclick="atualizarProgresso(5)">
-                            <label for="q5c">20</label>
+                            <label for="q5c" id="q5cText">20</label>
                         </div>
                     </div>
                 </div>
                 
                 <div class="pergunta" id="pergunta6" data-pergunta="6" style="display:none;">
-                    <p>6. Qual/is dia se comemora o aniversário do Buzina?</p>
+                    <p id="q6Text">6. Qual/is dia se comemora o aniversário do Buzina?</p>
                     <div class="opcoes">
                         <div class="opcao">
                             <input type="radio" id="q6a" name="q6" value="a" onclick="atualizarProgresso(6)">
-                            <label for="q6a">Dia 02/04</label>
+                            <label for="q6a" id="q6aText">Dia 02/04</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q6b" name="q6" value="b" onclick="atualizarProgresso(6)">
-                            <label for="q6b">Dia 01/04</label>
+                            <label for="q6b" id="q6bText">Dia 01/04</label>
                         </div>
                         <div class="opcao">
                             <input type="radio" id="q6c" name="q6" value="c" onclick="atualizarProgresso(6)">
-                            <label for="q6c">O aniversário do Buzina é a semana do dia 01/04 toda!!</label>
+                            <label for="q6c" id="q6cText">O aniversário do Buzina é a semana do dia 01/04 toda!!</label>
                         </div>
-                        
                     </div>
                 </div>
                 
                 <div class="navigation-buttons">
                     <button type="button" class="btn-quiz" id="btnProximo" onclick="navegarPergunta(1)">
-                        Próxima <i class="fas fa-arrow-right"></i>
+                        <span id="nextBtnText">Próxima</span> <i class="fas fa-arrow-right"></i>
                     </button>
                     <button type="button" class="btn-quiz" id="btnAnterior" onclick="navegarPergunta(-1)" style="display:none;">
-                        <i class="fas fa-arrow-left"></i> Anterior
+                        <i class="fas fa-arrow-left"></i> <span id="prevBtnText">Anterior</span>
                     </button>
                     <button type="button" id="enviarQuiz" onclick="verificarRespostas()" style="display:none;">
-                        VER RESULTADO! <i class="fas fa-award"></i>
+                        <span id="submitBtnText">VER RESULTADO!</span> <i class="fas fa-award"></i>
                     </button>
                 </div>
                 
                 <div class="loading" id="loading">
                     <i class="fas fa-spinner"></i>
-                    <p>Calculando seu nível de conhecimento sobre o Buzina...</p>
+                    <p id="loadingText">Calculando seu nível de conhecimento sobre o Buzina...</p>
                 </div>
                 
                 <div id="resultado"></div>
                 
                 <div class="quiz-footer">
-                    <p style="font-size: 1.5rem; margin-bottom: 10px;">🎂 FELIZ ANIVERSÁRIO, BUZINA! 🎂</p>
-                    <p>Parábens pelos seus vintão, gosto muito de você e você pode contar comigo pra tudo!! amo você!! <br> Ass: Marketinho</p>
-                    <p style="font-size: 0.8rem; margin-top: 10px;">PS: Se você não acertar todas, você é um pessímo amigo!</p>
+                    <p style="font-size: 1.5rem; margin-bottom: 10px;">🎂 <span id="happyBirthdayText">FELIZ ANIVERSÁRIO, BUZINA!</span> 🎂</p>
+                    <p id="congratsText">Parábens pelos seus vintão, gosto muito de você e você pode contar comigo pra tudo!! amo você!! <br> Ass: Marketinho</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px;" id="quizFooterPs">PS: Se você não acertar todas, você é um pessímo amigo!</p>
                 </div>
             </form>
         </div>
@@ -1192,6 +1255,163 @@
             q5: "c",
             q6: "c"
         };
+        
+        // Estado de tradução
+        let isEnglish = false;
+        
+        // Textos em português
+        const portugueseTexts = {
+            title: "🎉 ANIVERSÁRIO DO BUZINA 🎉",
+            subtitle: "O MAIS LEGAL DA FT!",
+            celebrateText: "CLIQUE NA TROMBETA PARA CELEBRAR!",
+            quizBtnText: "QUIZ: QUÃO BEM VOCÊ CONHECE O BUZINA?",
+            rankingTitle: "TOP 2 MAIS DAORA DA FT",
+            buzinaDesc: "Ex ditador de marketing da CDI, ex ditador do Marsha, agora membro do Marsha",
+            marketinhoDesc: "Atual (quase) ditador do marketing da CDI, apenas uma vítima da ditadura do Marsha",
+            quoteText: `"Seria Buzina o mais descolado da FT?<br><span style="font-size: 1.8rem; text-shadow: 2px 2px 0 var(--rosa-bi);">ÓBVIO QUE SIM!</span>"`,
+            footerText1: "Feito com ❤️ pelo amigo mais daora do Buzina",
+            quizTitle: "QUIZ DO BUZINA",
+            q1Text: "1. Quais os nomes dos ratos do Buzina?",
+            q1aText: "Double, Float, Int",
+            q1bText: "Double, Charlie, Bidu",
+            q1cText: "Float, Charlie, Double",
+            q2Text: "2. Quantos namorades buzina tem?",
+            q2aText: "21",
+            q2bText: "23",
+            q2cText: "24",
+            q3Text: "3. Qual o nome do cachorro do Buzina?",
+            q3aText: "Bidu",
+            q3bText: "Thor",
+            q3cText: "Molly",
+            q4Text: "4. O Buzina da aula do qual língua?",
+            q4aText: "Japonês",
+            q4bText: "Inglês",
+            q4cText: "Sumério",
+            q5Text: "5. Quantos anos buzina tem agora?",
+            q5aText: "21",
+            q5bText: "19",
+            q5cText: "20",
+            q6Text: "6. Qual/is dia se comemora o aniversário do Buzina?",
+            q6aText: "Dia 02/04",
+            q6bText: "Dia 01/04",
+            q6cText: "O aniversário do Buzina é a semana do dia 01/04 toda!!",
+            nextBtnText: "Próxima",
+            prevBtnText: "Anterior",
+            submitBtnText: "VER RESULTADO!",
+            loadingText: "Calculando seu nível de conhecimento sobre o Buzina...",
+            happyBirthdayText: "FELIZ ANIVERSÁRIO, BUZINA!",
+            congratsText: "Parábens pelos seus vintão, gosto muito de você e você pode contar comigo pra tudo!! amo você!! <br> Ass: Marketinho",
+            quizFooterPs: "PS: Se você não acertar todas, você é um pessímo amigo!",
+            translateBtnText: "English",
+            questionCounterText: (current, total) => `Pergunta ${current} de ${total}`
+        };
+        
+        // Textos em inglês
+        const englishTexts = {
+            title: "🎉 BUZINA'S BIRTHDAY 🎉",
+            subtitle: "THE COOLEST IN FT!",
+            celebrateText: "CLICK THE HORN TO CELEBRATE!",
+            quizBtnText: "QUIZ: HOW WELL DO YOU KNOW BUZINA?",
+            rankingTitle: "TOP 2 COOLEST IN FT",
+            buzinaDesc: "Former marketing dictator at CDI, former Marsha dictator, now Marsha member",
+            marketinhoDesc: "Current (almost) marketing dictator at CDI, just a victim of Marsha's dictatorship",
+            quoteText: `"Would Buzina be the coolest in FT?<br><span style="font-size: 1.8rem; text-shadow: 2px 2px 0 var(--rosa-bi);">OF COURSE YES!</span>"`,
+            footerText1: "Made with ❤️ by Buzina's coolest friend",
+            quizTitle: "BUZINA QUIZ",
+            q1Text: "1. What are the names of Buzina's rats?",
+            q1aText: "Double, Float, Int",
+            q1bText: "Double, Charlie, Bidu",
+            q1cText: "Float, Charlie, Double",
+            q2Text: "2. How many partners does Buzina have?",
+            q2aText: "21",
+            q2bText: "23",
+            q2cText: "24",
+            q3Text: "3. What's the name of Buzina's dog?",
+            q3aText: "Bidu",
+            q3bText: "Thor",
+            q3cText: "Molly",
+            q4Text: "4. What language does Buzina teach?",
+            q4aText: "Japanese",
+            q4bText: "English",
+            q4cText: "Sumerian",
+            q5Text: "5. How old is Buzina now?",
+            q5aText: "21",
+            q5bText: "19",
+            q5cText: "20",
+            q6Text: "6. On which day(s) is Buzina's birthday celebrated?",
+            q6aText: "April 2nd",
+            q6bText: "April 1st",
+            q6cText: "Buzina's birthday is the whole week of April 1st!!",
+            nextBtnText: "Next",
+            prevBtnText: "Previous",
+            submitBtnText: "SEE RESULT!",
+            loadingText: "Calculating your knowledge level about Buzina...",
+            happyBirthdayText: "HAPPY BIRTHDAY, BUZINA!",
+            congratsText: "Congratulations on your 20th birthday, I like you very much and you can count on me for everything!! I love you!! <br> From: Marketinho",
+            quizFooterPs: "PS: If you don't get all right, you're a terrible friend!",
+            translateBtnText: "Português",
+            questionCounterText: (current, total) => `Question ${current} of ${total}`
+        };
+        
+        // Função para alternar entre idiomas
+        function toggleLanguage() {
+            isEnglish = !isEnglish;
+            updateTexts();
+        }
+        
+        // Função para atualizar todos os textos na página
+        function updateTexts() {
+            const texts = isEnglish ? englishTexts : portugueseTexts;
+            
+            // Atualizar textos principais
+            document.getElementById('title').textContent = texts.title;
+            document.getElementById('subtitle').textContent = texts.subtitle;
+            document.getElementById('celebrateText').textContent = texts.celebrateText;
+            document.getElementById('quizBtnText').textContent = texts.quizBtnText;
+            document.getElementById('rankingTitle').textContent = texts.rankingTitle;
+            document.getElementById('buzinaDesc').textContent = texts.buzinaDesc;
+            document.getElementById('marketinhoDesc').textContent = texts.marketinhoDesc;
+            document.getElementById('quoteText').innerHTML = texts.quoteText;
+            document.getElementById('footerText1').textContent = texts.footerText1;
+            document.getElementById('translateBtn').querySelector('span').textContent = texts.translateBtnText;
+            
+            // Atualizar textos do quiz
+            document.getElementById('quizTitle').textContent = texts.quizTitle;
+            document.getElementById('q1Text').textContent = texts.q1Text;
+            document.getElementById('q1aText').textContent = texts.q1aText;
+            document.getElementById('q1bText').textContent = texts.q1bText;
+            document.getElementById('q1cText').textContent = texts.q1cText;
+            document.getElementById('q2Text').textContent = texts.q2Text;
+            document.getElementById('q2aText').textContent = texts.q2aText;
+            document.getElementById('q2bText').textContent = texts.q2bText;
+            document.getElementById('q2cText').textContent = texts.q2cText;
+            document.getElementById('q3Text').textContent = texts.q3Text;
+            document.getElementById('q3aText').textContent = texts.q3aText;
+            document.getElementById('q3bText').textContent = texts.q3bText;
+            document.getElementById('q3cText').textContent = texts.q3cText;
+            document.getElementById('q4Text').textContent = texts.q4Text;
+            document.getElementById('q4aText').textContent = texts.q4aText;
+            document.getElementById('q4bText').textContent = texts.q4bText;
+            document.getElementById('q4cText').textContent = texts.q4cText;
+            document.getElementById('q5Text').textContent = texts.q5Text;
+            document.getElementById('q5aText').textContent = texts.q5aText;
+            document.getElementById('q5bText').textContent = texts.q5bText;
+            document.getElementById('q5cText').textContent = texts.q5cText;
+            document.getElementById('q6Text').textContent = texts.q6Text;
+            document.getElementById('q6aText').textContent = texts.q6aText;
+            document.getElementById('q6bText').textContent = texts.q6bText;
+            document.getElementById('q6cText').textContent = texts.q6cText;
+            document.getElementById('nextBtnText').textContent = texts.nextBtnText;
+            document.getElementById('prevBtnText').textContent = texts.prevBtnText;
+            document.getElementById('submitBtnText').textContent = texts.submitBtnText;
+            document.getElementById('loadingText').textContent = texts.loadingText;
+            document.getElementById('happyBirthdayText').textContent = texts.happyBirthdayText;
+            document.getElementById('congratsText').innerHTML = texts.congratsText;
+            document.getElementById('quizFooterPs').textContent = texts.quizFooterPs;
+            
+            // Atualizar contador de perguntas
+            document.getElementById('questionCounter').textContent = texts.questionCounterText(perguntaAtual, totalPerguntas);
+        }
         
         // Tocar buzina
         function tocarBuzina() {
@@ -1261,7 +1481,8 @@
         function atualizarProgresso(perguntaNum) {
             try {
                 perguntaAtual = perguntaNum;
-                document.getElementById('questionCounter').textContent = `Pergunta ${perguntaNum} de ${totalPerguntas}`;
+                const texts = isEnglish ? englishTexts : portugueseTexts;
+                document.getElementById('questionCounter').textContent = texts.questionCounterText(perguntaNum, totalPerguntas);
                 const progresso = (perguntaNum / totalPerguntas) * 100;
                 document.getElementById('progressBar').style.width = `${progresso}%`;
                 
@@ -1324,25 +1545,38 @@
                     document.getElementById('loading').style.display = 'none';
                     
                     let mensagem = '';
-                    if (pontuacao === totalPerguntas) {
-                        mensagem = `🌟 PERFEITO! ${pontuacao}/${totalPerguntas}! Ainda bem que você não errou! 🌟`;
-                        tocarAplausos();
-                        
-                        // Confetti para acerto total
-                        if (window.confetti) {
-                            confetti({
-                                particleCount: 150,
-                                spread: 90,
-                                origin: { y: 0.6 },
-                                colors: ['#D60270', '#9B4F96', '#0038A8', '#FFD700']
-                            });
+                    if (isEnglish) {
+                        if (pontuacao === totalPerguntas) {
+                            mensagem = `🌟 PERFECT! ${pontuacao}/${totalPerguntas}! Good thing you didn't miss any! 🌟`;
+                        } else if (pontuacao >= totalPerguntas * 0.7) {
+                            mensagem = `👍 GOOD! ${pontuacao}/${totalPerguntas}! Could have gotten more right, you're an okay friend!`;
+                        } else if (pontuacao >= totalPerguntas * 0.4) {
+                            mensagem = `🤔 ${pontuacao}/${totalPerguntas}? A bad friend!`;
+                        } else {
+                            mensagem = `😅 ${pontuacao}/${totalPerguntas}? You're literally one of the worst friends!`;
                         }
-                    } else if (pontuacao >= totalPerguntas * 0.7) {
-                        mensagem = `👍 BOM! ${pontuacao}/${totalPerguntas}! Poderia ter acertado mais, você é um amigo mais ou menos!`;
-                    } else if (pontuacao >= totalPerguntas * 0.4) {
-                        mensagem = `🤔 ${pontuacao}/${totalPerguntas}? Um amigo pessímo!`;
                     } else {
-                        mensagem = `😅 ${pontuacao}/${totalPerguntas}? Você literalmente é top piores amigos!`;
+                        if (pontuacao === totalPerguntas) {
+                            mensagem = `🌟 PERFEITO! ${pontuacao}/${totalPerguntas}! Ainda bem que você não errou! 🌟`;
+                        } else if (pontuacao >= totalPerguntas * 0.7) {
+                            mensagem = `👍 BOM! ${pontuacao}/${totalPerguntas}! Poderia ter acertado mais, você é um amigo mais ou menos!`;
+                        } else if (pontuacao >= totalPerguntas * 0.4) {
+                            mensagem = `🤔 ${pontuacao}/${totalPerguntas}? Um amigo pessímo!`;
+                        } else {
+                            mensagem = `😅 ${pontuacao}/${totalPerguntas}? Você literalmente é top piores amigos!`;
+                        }
+                    }
+                    
+                    tocarAplausos();
+                    
+                    // Confetti para acerto total
+                    if (pontuacao === totalPerguntas && window.confetti) {
+                        confetti({
+                            particleCount: 150,
+                            spread: 90,
+                            origin: { y: 0.6 },
+                            colors: ['#D60270', '#9B4F96', '#0038A8', '#FFD700']
+                        });
                     }
                     
                     resultado.innerHTML = mensagem;
@@ -1351,7 +1585,9 @@
             } catch (e) {
                 console.error("Erro ao verificar respostas:", e);
                 document.getElementById('loading').style.display = 'none';
-                document.getElementById('resultado').innerHTML = "Ocorreu um erro ao calcular seu resultado. Tente novamente!";
+                document.getElementById('resultado').innerHTML = isEnglish ? 
+                    "An error occurred while calculating your result. Please try again!" : 
+                    "Ocorreu um erro ao calcular seu resultado. Tente novamente!";
                 document.getElementById('resultado').style.display = 'block';
             }
         }
@@ -1491,6 +1727,12 @@
                         "retina_detect": true
                     });
                 }
+                
+                // Configurar botão de tradução
+                document.getElementById('translateBtn').addEventListener('click', toggleLanguage);
+                
+                // Inicializar textos
+                updateTexts();
             } catch (e) {
                 console.error("Erro ao carregar partículas:", e);
             }
